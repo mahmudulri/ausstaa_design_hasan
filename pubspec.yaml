@@ -1,0 +1,41 @@
+name: aust_textile_alumni
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=2.17.0 <3.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  get_storage: ^2.0.3
+  flutter_svg: ^1.1.5
+  url_launcher: ^6.1.6
+  toggle_switch: ^2.0.1
+  outlined_text: ^1.0.1
+  google_fonts: ^3.0.1
+  image_picker: ^0.8.6
+  lottie: ^1.4.1
+  eva_icons_flutter: ^3.1.0
+
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+    - assets/files/
+
+  fonts:
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/ubuntu.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
+
