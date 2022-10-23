@@ -1,7 +1,10 @@
 import 'dart:io';
 import 'package:aust_textile_alumni/app/routes/app_pages.dart';
 import 'package:aust_textile_alumni/app/utill/app_colors.dart';
+import 'package:aust_textile_alumni/app/utill/app_string.dart';
+import 'package:aust_textile_alumni/app/widget/custom_text_editor.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_quill/flutter_quill.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +21,7 @@ class _UserPostState extends State<UserPost> {
   List<String> dropDownPostItem = [
     "Menu 1",
     "Menu 2",
+    "Menu 3",
   ];
 
   var selectedItem;
@@ -42,6 +46,7 @@ class _UserPostState extends State<UserPost> {
   UserPostController controller = Get.put(UserPostController());
   @override
   Widget build(BuildContext context) {
+    // QuillController controller = QuillController.basic();
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeigth = MediaQuery.of(context).size.height;
 
@@ -578,32 +583,34 @@ class _UserPostState extends State<UserPost> {
                                 height: screenHeigth * 0.020,
                               ),
                               //....................................................Job Description Box start
-                              Container(
-                                height: screenHeigth * 0.35,
-                                width: screenWidth - 20,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: Color(0xffC4C4C4), width: 2),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: screenHeigth * 0.019,
-                                      right: screenHeigth * 0.019),
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                    ),
-                                    keyboardType: TextInputType.text,
-                                    minLines: 1,
-                                    maxLines: 30,
-                                    onChanged: (value) {
-                                      controller.postDescription.value =
-                                          value.toString();
-                                    },
-                                  ),
-                                ),
-                              ),
+
+                              CustomTextEditor(screenHeigth, screenWidth),
+                              // Container(
+                              //   height: screenHeigth * 0.35,
+                              //   width: screenWidth - 20,
+                              //   decoration: BoxDecoration(
+                              //     borderRadius: BorderRadius.circular(10),
+                              //     border: Border.all(
+                              //         color: Color(0xffC4C4C4), width: 2),
+                              //   ),
+                              //   child: Padding(
+                              //     padding: EdgeInsets.only(
+                              //         left: screenHeigth * 0.019,
+                              //         right: screenHeigth * 0.019),
+                              //     child: TextFormField(
+                              //       decoration: InputDecoration(
+                              //         border: InputBorder.none,
+                              //       ),
+                              //       keyboardType: TextInputType.text,
+                              //       minLines: 1,
+                              //       maxLines: 30,
+                              //       onChanged: (value) {
+                              //         controller.postDescription.value =
+                              //             value.toString();
+                              //       },
+                              //     ),
+                              //   ),
+                              // ),
                               //....................................................Job Description Box End
                               SizedBox(
                                 height: screenHeigth * 0.020,
@@ -873,9 +880,9 @@ class _UserPostState extends State<UserPost> {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(
-                            left: 20,
-                            right: 20,
-                          ),
+                              // left: 20,
+                              // right: 20,
+                              ),
                           child: Column(
                             children: [
                               SizedBox(
@@ -940,42 +947,285 @@ class _UserPostState extends State<UserPost> {
                               SizedBox(
                                 height: screenHeigth * 0.030,
                               ),
-                              Row(
-                                children: [
-                                  Icon(Icons.calendar_month),
-                                  SizedBox(
-                                    width: screenWidth * 0.020,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 20,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.calendar_month),
+                                    SizedBox(
+                                      width: screenWidth * 0.020,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        pickDateRange();
+                                      },
+                                      child: Text(
+                                          '${start.year}  ${start.month.toString()}  ${start.day}'),
+                                    ),
+                                    SizedBox(
+                                      width: screenWidth * 0.010,
+                                    ),
+                                    Text("-"),
+                                    SizedBox(
+                                      width: screenWidth * 0.010,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        pickDateRange();
+                                      },
+                                      child: Text(
+                                          '${end.year}  ${end.month}  ${end.day}'),
+                                    ),
+                                    Spacer(),
+                                    Text("All post"),
+                                    SizedBox(
+                                      width: screenWidth * 0.010,
+                                    ),
+                                    Icon(
+                                      Icons.filter_list,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: screenHeigth * 0.030,
+                              ),
+                              Container(
+                                // height: screenHeigth * 0.250,
+                                width: screenWidth,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey.withOpacity(0.15)
+                                    // color: Color(0xffD9D9D9),
+                                    ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons
+                                                        .calendar_month_outlined,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text("30 oct 2022"),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Spacer(),
+                                          Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xffF2C94C),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8)),
+                                                    // height: 30,
+                                                    child: Center(
+                                                        child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Text(
+                                                        "Help",
+                                                        style: TextStyle(
+                                                          fontSize:
+                                                              screenHeigth *
+                                                                  0.012,
+                                                        ),
+                                                      ),
+                                                    )),
+                                                  ),
+                                                  SizedBox(
+                                                    width: screenWidth * 0.010,
+                                                  ),
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                          width: 1,
+                                                          color: Colors.black,
+                                                        ),
+                                                        // color:
+                                                        //     Color(0xffF2C94C),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8)),
+                                                    // height: 30,
+                                                    child: Center(
+                                                        child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Text(
+                                                        "General post",
+                                                        style: TextStyle(
+                                                          fontSize:
+                                                              screenHeigth *
+                                                                  0.012,
+                                                        ),
+                                                      ),
+                                                    )),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: screenHeigth * 0.010,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.asset(
+                                                  "assets/images/dubai.jpg",
+                                                  height: 100,
+                                                  // width: 160,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Icon(
+                                                Icons.edit,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                height: 100,
+                                                width: double.infinity,
+                                                child: Text(
+                                                  longtext,
+                                                  maxLines: 3,
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        screenHeigth * 0.012,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ),
+                                              ),
+                                              // Icon(
+                                              //   Icons.edit,
+                                              // ),
+                                            ],
+                                          ),
+
+                                          // Container(
+                                          //   child: Flexible(
+                                          //     child: Text(
+                                          //       longtext,
+                                          //       maxLines: 3,
+                                          //       style: TextStyle(
+                                          //         fontSize:
+                                          //             screenHeigth * 0.012,
+                                          //         overflow:
+                                          //             TextOverflow.ellipsis,
+                                          //       ),
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                        ],
+                                      ),
+                                      // SizedBox(
+                                      //   height: screenHeigth * 0.010,
+                                      // ),
+                                      // Row(
+                                      //   children: [
+                                      //     Column(
+                                      //       children: [
+                                      //         Icon(
+                                      //           Icons.edit,
+                                      //         ),
+                                      //       ],
+                                      //     ),
+                                      //     Spacer(),
+                                      //     Column(
+                                      //       children: [
+                                      //         Row(
+                                      //           children: [
+                                      //             Container(
+                                      //               decoration: BoxDecoration(
+                                      //                   color: Colors.grey,
+                                      //                   borderRadius:
+                                      //                       BorderRadius
+                                      //                           .circular(8)),
+                                      //               // height: 30,
+                                      //               child: Center(
+                                      //                   child: Padding(
+                                      //                 padding:
+                                      //                     const EdgeInsets.all(
+                                      //                         8.0),
+                                      //                 child: Text(
+                                      //                   "#help",
+                                      //                   style: TextStyle(
+                                      //                     fontSize:
+                                      //                         screenHeigth *
+                                      //                             0.012,
+                                      //                   ),
+                                      //                 ),
+                                      //               )),
+                                      //             ),
+                                      //             SizedBox(
+                                      //               width: screenWidth * 0.010,
+                                      //             ),
+                                      //             Container(
+                                      //               decoration: BoxDecoration(
+                                      //                   color: Colors.grey,
+                                      //                   borderRadius:
+                                      //                       BorderRadius
+                                      //                           .circular(8)),
+                                      //               // height: 30,
+                                      //               child: Center(
+                                      //                   child: Padding(
+                                      //                 padding:
+                                      //                     const EdgeInsets.all(
+                                      //                         8.0),
+                                      //                 child: Text(
+                                      //                   "#blood",
+                                      //                   style: TextStyle(
+                                      //                     fontSize:
+                                      //                         screenHeigth *
+                                      //                             0.012,
+                                      //                   ),
+                                      //                 ),
+                                      //               )),
+                                      //             ),
+                                      //           ],
+                                      //         ),
+                                      //       ],
+                                      //     ),
+                                      //   ],
+                                      // ),
+                                    ],
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      pickDateRange();
-                                    },
-                                    child: Text(
-                                        '${start.year}  ${start.month.toString()}  ${start.day}'),
-                                  ),
-                                  SizedBox(
-                                    width: screenWidth * 0.010,
-                                  ),
-                                  Text("-"),
-                                  SizedBox(
-                                    width: screenWidth * 0.010,
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      pickDateRange();
-                                    },
-                                    child: Text(
-                                        '${end.year}  ${end.month}  ${end.day}'),
-                                  ),
-                                  Spacer(),
-                                  Text("All post"),
-                                  SizedBox(
-                                    width: screenWidth * 0.010,
-                                  ),
-                                  Icon(
-                                    Icons.filter_list,
-                                  ),
-                                ],
+                                ),
                               ),
                             ],
                           ),

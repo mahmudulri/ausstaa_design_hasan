@@ -15,89 +15,93 @@ class PageOne extends StatelessWidget {
     var screenHeigth = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
-      resizeToAvoidBottomInset: false,
-      body: ListView(
-        children: [
-          SizedBox(
-            height: screenHeigth * 0.020,
+      // resizeToAvoidBottomInset: false,
+      body: Container(
+        height: 500,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: screenHeigth * 0.020,
+              ),
+              page_one_textfield(
+                screenHeigth,
+                screenWidth,
+                Icon(
+                  Icons.password,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                "User Name",
+              ),
+              SizedBox(
+                height: screenHeigth * 0.010,
+              ),
+              page_one_textfield(
+                screenHeigth,
+                screenWidth,
+                Icon(
+                  Icons.password,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                "User Email",
+              ),
+              SizedBox(
+                height: screenHeigth * 0.010,
+              ),
+              page_one_textfield(
+                screenHeigth,
+                screenWidth,
+                Icon(
+                  Icons.password,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                "User Role",
+              ),
+              SizedBox(
+                height: screenHeigth * 0.010,
+              ),
+              page_one_textfield(
+                screenHeigth,
+                screenWidth,
+                Icon(
+                  Icons.password,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                "Address Id",
+              ),
+              SizedBox(
+                height: screenHeigth * 0.010,
+              ),
+              page_one_textfield(
+                screenHeigth,
+                screenWidth,
+                Icon(
+                  Icons.password,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                "Password",
+              ),
+              SizedBox(
+                height: screenHeigth * 0.010,
+              ),
+              page_one_textfield(
+                screenHeigth,
+                screenWidth,
+                Icon(
+                  Icons.password,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                "Confirm Password",
+              ),
+            ],
           ),
-          page_one_textfield(
-            screenHeigth,
-            screenWidth,
-            Icon(
-              Icons.password,
-              color: Colors.white,
-              size: 30,
-            ),
-            "User Name",
-          ),
-          SizedBox(
-            height: screenHeigth * 0.010,
-          ),
-          page_one_textfield(
-            screenHeigth,
-            screenWidth,
-            Icon(
-              Icons.password,
-              color: Colors.white,
-              size: 30,
-            ),
-            "User Email",
-          ),
-          SizedBox(
-            height: screenHeigth * 0.010,
-          ),
-          page_one_textfield(
-            screenHeigth,
-            screenWidth,
-            Icon(
-              Icons.password,
-              color: Colors.white,
-              size: 30,
-            ),
-            "User Role",
-          ),
-          SizedBox(
-            height: screenHeigth * 0.010,
-          ),
-          page_one_textfield(
-            screenHeigth,
-            screenWidth,
-            Icon(
-              Icons.password,
-              color: Colors.white,
-              size: 30,
-            ),
-            "Address Id",
-          ),
-          SizedBox(
-            height: screenHeigth * 0.010,
-          ),
-          page_one_textfield(
-            screenHeigth,
-            screenWidth,
-            Icon(
-              Icons.password,
-              color: Colors.white,
-              size: 30,
-            ),
-            "Password",
-          ),
-          SizedBox(
-            height: screenHeigth * 0.010,
-          ),
-          page_one_textfield(
-            screenHeigth,
-            screenWidth,
-            Icon(
-              Icons.password,
-              color: Colors.white,
-              size: 30,
-            ),
-            "Confirm Password",
-          ),
-
-        ],
+        ),
       ),
     );
   }
@@ -140,30 +144,35 @@ class PageOne extends StatelessWidget {
                 left: 20,
               ),
               child: TextFormField(
-                  obscureText: hinttxt == "Password" ? true :
-                                  hinttxt == "Confirm Password" ? true : false,
-                   keyboardType: hinttxt == 'User Role' ?
-                             TextInputType.number :
-                                   hinttxt == 'Address Id' ?
-                                       TextInputType.number :
-                                       TextInputType.text,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: hinttxt,
-                  ),
-
-                onChanged: (value){
-                  hinttxt == "User Name" ?
-                  regController.name.value = value.toString() :
-                  hinttxt == "User Email" ?
-                  regController.email.value = value.toString() :
-                  hinttxt == "User Role" ?
-                  regController.userRole.value = value.toString() :
-                  hinttxt == "Address Id" ?
-                  regController.addressId.value = value.toString() :
-                  hinttxt == "Password" ?
-                  regController.password.value = value.toString() :
-                  regController.confirmPassword.value = value.toString();
+                obscureText: hinttxt == "Password"
+                    ? true
+                    : hinttxt == "Confirm Password"
+                        ? true
+                        : false,
+                keyboardType: hinttxt == 'User Role'
+                    ? TextInputType.number
+                    : hinttxt == 'Address Id'
+                        ? TextInputType.number
+                        : TextInputType.text,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: hinttxt,
+                ),
+                onChanged: (value) {
+                  hinttxt == "User Name"
+                      ? regController.name.value = value.toString()
+                      : hinttxt == "User Email"
+                          ? regController.email.value = value.toString()
+                          : hinttxt == "User Role"
+                              ? regController.userRole.value = value.toString()
+                              : hinttxt == "Address Id"
+                                  ? regController.addressId.value =
+                                      value.toString()
+                                  : hinttxt == "Password"
+                                      ? regController.password.value =
+                                          value.toString()
+                                      : regController.confirmPassword.value =
+                                          value.toString();
                 },
               ),
             ),
@@ -173,4 +182,3 @@ class PageOne extends StatelessWidget {
     );
   }
 }
-

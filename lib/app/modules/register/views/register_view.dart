@@ -20,7 +20,6 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
-
   final RegisterController regController = Get.put(RegisterController());
 
   PageController controller = PageController();
@@ -61,9 +60,8 @@ class _RegisterViewState extends State<RegisterView> {
                       child: Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(
-                              left: screenHeigth * 0.020
-                            ),
+                            padding:
+                                EdgeInsets.only(left: screenHeigth * 0.020),
                             child: Text(
                               "Welcome",
                               style: GoogleFonts.poppins(
@@ -82,16 +80,15 @@ class _RegisterViewState extends State<RegisterView> {
                     Padding(
                       padding: EdgeInsets.only(
                           left: screenHeigth * 0.020,
-                          top: screenHeigth * 0.012
-                      ),
+                          top: screenHeigth * 0.012),
                       child: Image.asset("assets/images/logo.png"),
                     ),
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                     left: screenHeigth * 0.008,
-                     right: screenHeigth * 0.008,
+                    left: screenHeigth * 0.008,
+                    right: screenHeigth * 0.008,
                     top: screenHeigth * 0.015,
                   ),
                   child: Container(
@@ -160,6 +157,7 @@ class _RegisterViewState extends State<RegisterView> {
                             child: pagelist[number],
                           ),
                         ),
+                        
                         Expanded(
                           flex: 1,
                           child: Padding(
@@ -179,7 +177,6 @@ class _RegisterViewState extends State<RegisterView> {
                                   },
                                   child: Visibility(
                                     child: Icon(
-
                                       Icons.arrow_back_ios,
                                       size: 25,
                                       color: Colors.black,
@@ -248,14 +245,15 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ],
             ),
-            Obx(() => regController.isLoading.value == true ?
-            Align(
-              alignment: Alignment.center,
-              child: Center(
-                child: Lottie.asset("assets/files/loading.json")
-              ),
-            ) : Container())
-
+            Obx(
+              () => regController.isLoading.value == true
+                  ? Align(
+                      alignment: Alignment.center,
+                      child: Center(
+                          child: Lottie.asset("assets/files/loading.json")),
+                    )
+                  : Container(),
+            ),
           ],
         ),
       ),

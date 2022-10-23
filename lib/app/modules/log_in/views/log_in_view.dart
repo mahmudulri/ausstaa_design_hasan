@@ -11,7 +11,6 @@ import '../../../widget/login_button.dart';
 import '../controllers/log_in_controller.dart';
 
 class LogInView extends GetView<LogInController> {
-
   final LogInController controller = Get.put(LogInController());
 
   @override
@@ -33,7 +32,9 @@ class LogInView extends GetView<LogInController> {
                 SizedBox(
                   height: screenHeight * 0.15,
                 ),
-                 Image.asset("assets/images/logo.png",),
+                Image.asset(
+                  "assets/images/logo.png",
+                ),
                 SizedBox(
                   height: screenHeight * 0.015,
                 ),
@@ -61,7 +62,8 @@ class LogInView extends GetView<LogInController> {
                       color: Colors.white,
                       size: 30,
                     ),
-                    "User email",controller),
+                    "User email",
+                    controller),
                 SizedBox(
                   height: screenHeight * 0.025,
                 ),
@@ -73,7 +75,8 @@ class LogInView extends GetView<LogInController> {
                       color: Colors.white,
                       size: 30,
                     ),
-                    "Password",controller),
+                    "Password",
+                    controller),
                 SizedBox(
                   height: 20,
                 ),
@@ -102,7 +105,11 @@ class LogInView extends GetView<LogInController> {
                 SizedBox(
                   height: screenHeight * 0.015,
                 ),
-                loginButton(screenHeight, screenWidth, "Log in",),
+                loginButton(
+                  screenHeight,
+                  screenWidth,
+                  "Log in",
+                ),
                 SizedBox(
                   height: screenHeight * 0.025,
                 ),
@@ -117,9 +124,7 @@ class LogInView extends GetView<LogInController> {
                     ),
                     InkWell(
                         onTap: () {
-                          Get.toNamed(
-                            Routes.REGISTER
-                          );
+                          Get.toNamed(Routes.REGISTER);
                         },
                         child: Text(
                           " REGISTER",
@@ -128,14 +133,13 @@ class LogInView extends GetView<LogInController> {
                             fontSize: 14,
                           ),
                         )),
-
                   ],
                 ),
-                Obx(() => controller.isLoading.value == true ?
-                Align(
-                  alignment: Alignment.center,
-                  child: Lottie.asset("assets/files/loading.json")
-                ) : Container()),
+                Obx(() => controller.isLoading.value == true
+                    ? Align(
+                        alignment: Alignment.center,
+                        child: Lottie.asset("assets/files/loading.json"))
+                    : Container()),
               ],
             ),
           ],
@@ -144,4 +148,3 @@ class LogInView extends GetView<LogInController> {
     );
   }
 }
-
